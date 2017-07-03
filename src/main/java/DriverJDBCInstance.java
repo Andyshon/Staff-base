@@ -126,21 +126,21 @@ public class DriverJDBCInstance {
     }
 
     public ArrayList<String> getDataSpecialtieslist() {
-        Statement st = null;
-        ResultSet rs = null;
+        Statement statement = null;
+        ResultSet resultSet = null;
         ArrayList<String> specialties = new ArrayList<String>();
 
         try {
             connection = DriverManager.getConnection(url, login, password);
-            st = connection.createStatement();
-            rs = st.executeQuery("select * from Developers");
-            while (rs.next()) {
-                String res = rs.getString(3);
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery("select * from Developers");
+            while (resultSet.next()) {
+                String res = resultSet.getString(3);
                 specialties.add(res);
             }
 
-            rs.close();
-            st.close();
+            resultSet.close();
+            statement.close();
             connection.close();
         } catch (SQLException e){
             System.out.println("error2");
